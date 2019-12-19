@@ -17,9 +17,7 @@ app.use('/api/asset/', assetController);
 const uri = 'mongodb://127.0.0.1:27017/';
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 
-
 const connection = mongoose.connection;
-
 
 connection.once('open', () => {
   console.log("MongoDB database up...");

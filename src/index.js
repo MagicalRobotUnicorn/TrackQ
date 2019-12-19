@@ -28,17 +28,15 @@ class Root extends Component {
         this.props.setUser(user);
         this.props.history.push('/');
       }
-    })
+    });
   }
   render() {
     return this.props.isLoading ? <Spinner /> : (
-  <Router>
     <Switch>
       <Route exact path="/" component={App} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
     </Switch>
-  </Router>
     )
   }
 }
@@ -57,8 +55,6 @@ const RootWithAuth = withRouter(
 ReactDOM.render(
 <Provider store={store}>
 <Router>
-<RootWithAuth/>
+<RootWithAuth />
 </Router>
 </Provider>, document.getElementById('root'));
-
-ReactDOM.render(<Root />, document.getElementById('root'));

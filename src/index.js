@@ -8,6 +8,8 @@ import firebase from './firebase';
 import { setUser } from './actions/';
 
 
+// color: 355a96
+
 import 'semantic-ui-css/semantic.min.css';
 
 import { BrowserRouter as Router, Switch, Route, withRouter} from 'react-router-dom';

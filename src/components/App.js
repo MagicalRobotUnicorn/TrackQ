@@ -4,7 +4,7 @@ import "./App.css";
 
 import ColorPanel from './ColorPanel/ColorPanel';
 import SidePanel from './SidePanel/SidePanel';
-import Assets from './Assets/Assets';
+import Assets from './Assets/Asset';
 import MetaPanel from './MetaPanel/MetaPanel';
 
 const App = () => (

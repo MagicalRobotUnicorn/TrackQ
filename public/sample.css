@@ -1,0 +1,25 @@
+.square {
+  margin-top: 10px;
+  margin-left: 32px;
+}
+
+.container {
+  margin-top: 0.375in;
+  margin-bottom: 0.375in;
+  margin-left: 0.625in;
+}
+
+
+.container td {
+  border: 1px solid black;
+  margin: 0.125in;
+  width: 1.5in;
+  height: 1.5in;
+}
+
+
+.description p {
+  text-align: center;
+  height: 30px;
+  font-size: 15px;
+}

@@ -4,7 +4,7 @@ import "./App.css";
 
 import ColorPanel from './ColorPanel/ColorPanel';
 import SidePanel from './SidePanel/SidePanel';
-import Assets from './Assets/Asset';
+import Messages from './Messages/Messages';
 import MetaPanel from './MetaPanel/MetaPanel';
 
 const App = () => (
@@ -12,7 +12,7 @@ const App = () => (
     <ColorPanel />
     <SidePanel />
     <Grid.Column style={{ marginLeft: 320 }}>
-      <Assets />
+      <Messages />
     </Grid.Column>
     <Grid.Column width={4}>
       <MetaPanel />

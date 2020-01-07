@@ -23,8 +23,25 @@ const user_reducer = (state = initialUserState, action) => {
   }
 }
 
+const initialAssetState = {
+  currentAsset: null
+};
+
+const asset_reducer = (state = initialAssetState, action) => {
+  switch (action.type) {
+    case actionTypes.SET_CURRENT_ASSET:
+      return {
+        ...state,
+        currentAsset: action.payload.currentAsset
+      }
+      default:
+        return state;
+  }
+}
+
 const rootReducer = combineReducers({
-  user: user_reducer
+  user: user_reducer,
+  asset: asset_reducer
 });
 
 export default rootReducer;

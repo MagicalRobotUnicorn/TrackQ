@@ -8,6 +8,7 @@
     "express": "^4.17.1",
     "express-router": "0.0.1",
     "firebase": "^7.6.1",
+    "html-pdf": "^2.2.0",
     "jimp": "^0.9.3",
     "jsqr": "^1.2.0",
     "md5": "^2.2.1",

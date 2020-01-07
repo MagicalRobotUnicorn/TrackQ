@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import UserPanel from './UserPanel';
+import Assets from './Assets';
 
 export default class SidePanel extends Component {
   render() {
+    const { currentUser } = this.props;
+
     return (
       <Menu
         size="large"
@@ -12,7 +15,8 @@ export default class SidePanel extends Component {
         vertical
         style={{ background: '#355a96', fontSize: '1.2rem' }}
       >
-        <UserPanel />
+        <UserPanel currentUser={currentUser} />
+        <Assets currentUser={currentUser} />
       </Menu>
     )
   }

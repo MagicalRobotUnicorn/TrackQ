@@ -5,3 +5,25 @@ body,
   background: #eee;
   padding: 1em;
 }
+
+/* Updates.js */
+.updates {
+  height: 440px;
+  overflow-y: scroll;
+}
+
+/* AssetForm.js */
+.update__form {
+  position: fixed !important;
+  bottom: 1em;
+  margin-left: 320px !important;
+  left: 0;
+  right: 1em;
+  z-index: 200;
+}
+
+/* Message.js */
+.update__self {
+  border-left: 2px solid orange;
+  padding-left: 8px;
+}

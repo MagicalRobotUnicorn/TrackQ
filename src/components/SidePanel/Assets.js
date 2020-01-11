@@ -3,7 +3,12 @@ import firebase from '../../firebase';
 import { Menu, Icon, Modal, Form, Input, Button } from 'semantic-ui-react';
 import { setCurrentAsset} from '../../actions';
 import { connect } from 'react-redux';
+import '../../scripts/qrcode';
 
+
+// Import QR Code library
+
+// Render 150px QR Code of the assetId in the database
 
 class Assets extends Component {
   state = {
@@ -34,6 +39,10 @@ class Assets extends Component {
       },
       () => this.setFirstAsset());
     });
+  }
+
+  renderQrCode = () => {
+    
   }
 
   removeListeners = () => {
@@ -140,6 +149,7 @@ class Assets extends Component {
       <React.Fragment>
         <Menu.Menu style={{ paddingBottom: '2em', color: 'grey' }}>
           <span>
+            {/* QRCode Div */}
             <Icon name="exchange" /> Assets
         </span>{" "}
           ({ assets.length })

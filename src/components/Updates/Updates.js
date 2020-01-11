@@ -32,10 +32,10 @@ export default class Updates extends Component {
     let loadedUpdates = [];
     this.state.updatesRef.child(assetId).on('child_added', snap => {
       loadedUpdates.push(snap.val());
-      console.log(loadedUpdates);
+      console.log("Loaded updates: " + loadedUpdates.length);
       this.setState({
-        messages: loadedUpdates,
-        messagesLoading: false
+        updates: loadedUpdates,
+        updatesLoading: false
       });
     });
   };

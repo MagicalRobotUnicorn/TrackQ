@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import UserPanel from './UserPanel';
 import Assets from './Assets';
+import DirectMessages from './DirectMessages';
 
 export default class SidePanel extends Component {
   render() {
@@ -17,6 +18,9 @@ export default class SidePanel extends Component {
       >
         <UserPanel currentUser={currentUser} />
         <Assets currentUser={currentUser} />
+        <DirectMessages
+          currentUser={currentUser}
+        />
       </Menu>
     )
   }

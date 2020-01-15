@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../../firebase';
 import { Menu, Icon, Modal, Form, Input, Button } from 'semantic-ui-react';
-import { setCurrentAsset} from '../../actions';
+import { setCurrentAsset, setPrivateAsset } from '../../actions';
 import { connect } from 'react-redux';
 import '../../scripts/qrcode';
 
@@ -198,4 +198,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, {setCurrentAsset})(Assets);
+export default connect(mapStateToProps, {setCurrentAsset, setPrivateAsset})(Assets);

@@ -25,3 +25,12 @@ export const setCurrentAsset = asset => {
     }
   }
 }
+
+export const setPrivateAsset = isPrivateAsset => {
+  return {
+    type: actionTypes.SET_PRIVATE_ASSET,
+    payload: {
+      isPrivateAsset
+    }
+  }
+}

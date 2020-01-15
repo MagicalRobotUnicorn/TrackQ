@@ -34,8 +34,13 @@ const asset_reducer = (state = initialAssetState, action) => {
         ...state,
         currentAsset: action.payload.currentAsset
       }
-      default:
-        return state;
+    case actionTypes.SET_PRIVATE_ASSET:
+      return {
+        ...state,
+        isPrivateAsset: action.payload.isPrivateAsset
+      }
+    default:
+      return state;
   }
 }
 

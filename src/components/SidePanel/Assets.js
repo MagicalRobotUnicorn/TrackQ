@@ -41,10 +41,6 @@ class Assets extends Component {
     });
   }
 
-  renderQrCode = () => {
-    
-  }
-
   removeListeners = () => {
     this.state.assetsRef.off();
   }

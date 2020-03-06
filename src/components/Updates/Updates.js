@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Comment } from 'semantic-ui-react';
+import { Segment, Comment, Grid, Modal } from 'semantic-ui-react';
 import firebase from '../../firebase';
 
 import UpdatesHeader from './UpdatesHeader';
@@ -8,12 +8,18 @@ import Update from './Update';
 
 
 
+// this.props for the display code function
+
 export default class Updates extends Component {
   state = {
     updatesRef: firebase.database().ref('updates'),
     privateUpdatesRef: firebase.database().ref('privateMessages'),
+    locationsRef: firebase.database().ref('locations'),
     updates: [],
+    locations: [],
+    locationsModal: false,
     updatesLoading: true,
+    locationsLoading: true,
     asset: this.props.currentAsset,
     user: this.props.currentUser,
     progressBar: false,
@@ -22,7 +28,28 @@ export default class Updates extends Component {
     searchLoading: false,
     searchResults: []
   }
-  
+
+  //Location Modal Functions
+  openLocationsModal = () => {
+    this.setState(
+      {
+        locationsModal: true
+      }
+    )
+  }
+
+  closeLocationsModal = () => {
+    this.setState(
+      {
+        locationsModal: false
+      }
+    )
+  }
+
+  // Write Locations Loading function
+
+
+
   componentDidMount(){ 
     const { asset, user } = this.state;
 
@@ -48,6 +75,37 @@ export default class Updates extends Component {
     });
   };
 
+  // Add Location Listener
+  addLocationListener = locationId => {
+    let loadedLocations = [];
+    this.state.locationsRef.child(locationId).on('child_added', snap => {
+      loadedLocations.push(snap.val());
+      // console.log("Loaded updates: " + loadedUpdates.length);
+      this.setState({
+        locations: loadedLocations,
+        locationsLoading: false
+      });
+      this.countUniqueUsers(loadedLocations);
+    });
+  };
+
+  // displayCode = (idInformation) => {
+  //   let thisCode = new QRCode("thisCode", {
+  //     text: idInformation,
+  //     width: 150,
+  //     height: 150,
+  //     colorDark: "#000000",
+  //     colorLight: '#ffffff'
+  //     // correctLevel: QRCode.CorrectLevel.H
+  //   });
+
+  //   return thisCode;
+  // }
+  // return canvas object for the 150px square
+  // rendered by browser
+
+
+
   getUpdatesRef = () => {
     const { updatesRef, privateUpdatesRef, privateAsset } = this.state;
     return privateAsset ? privateUpdatesRef : updatesRef;
@@ -66,6 +124,7 @@ export default class Updates extends Component {
     const channelUpdates = [...this.state.updates];
     const regex = new RegExp(this.state.searchTerm, 'gi');
     const searchResults = channelUpdates.reduce((acc, update) => {
+      // OR Update.Location.match(regex)
       if (update.content && (update.content.match(regex) || update.user.name.match(regex))) {
         acc.push(update);
       }
@@ -76,6 +135,8 @@ export default class Updates extends Component {
     setTimeout(() => this.setState({ searchLoading: false }), 1000);
   }
 
+
+  // TODO: write countUniqueLocations for the next section
   countUniqueUsers = updates => {
     const uniqueUsers = updates.reduce((acc, update) => {
       if (!acc.includes(update.user.name)){
@@ -90,6 +151,8 @@ export default class Updates extends Component {
     this.setState({numUniqueUsers})
   }
 
+  // TODO: add different form for private 'assset' and no display of test script
+  // Celled Grid Update
   displayUpdates = updates => (
     updates.length > 0 && updates.map(update => (
       <Update 
@@ -108,15 +171,22 @@ export default class Updates extends Component {
 
   displayAssetName = asset => asset ? `${this.state.privateAsset ? '@' : '> '}${asset.name}` : '';
 
+  // displayAssetId function
+  displayAssetId = asset => asset ? asset.id : '';
+
 
   render() {
-    const { updatesRef, asset, user, updates, progressBar, numUniqueUsers, searchTerm, searchResults, searchLoading, privateChannel} = this.state;
+    const {updatesRef, asset, user, updates, locations, progressBar, numUniqueUsers, searchTerm, searchResults, searchLoading, privateChannel} = this.state;
 
     return (
       <React.Fragment>
+        <Grid celled>
         {/* Pass Current Asset to UpdatesHeader */}
+
+        {/* UpdateHeader to Cell Row */}
         <UpdatesHeader
           assetName={this.displayAssetName(asset)}
+          assetId={this.displayAssetId(asset)}
           numUniqueUsers={numUniqueUsers}
           handleSearchChange={this.handleSearchChange}
           searchLoading={searchLoading}
@@ -128,15 +198,18 @@ export default class Updates extends Component {
             {searchTerm ? this.displayUpdates(searchResults): this.displayUpdates(updates)}
           </Comment.Group>
         </Segment>
+        </Grid>
 
         <UpdateForm 
           getUpdatesRef={this.getUpdatesRef}
           currentAsset={asset}
           currentUser={user}
+          locations={locations}
           isProgressBarVisible={this.isProgressBarVisible}
           isPrivateChannel={privateChannel}
           getMessagesRef={this.getMessagesRef}
         />
+
       </React.Fragment>
     )
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Segment, Input, Icon } from 'semantic-ui-react';
+import { Header, Segment, Input, Icon, Grid } from 'semantic-ui-react';
 
+var QRCode = require('qrcode-react');
 
 // Use UpdatesHeader as Class based componenet
 
@@ -8,12 +9,17 @@ import { Header, Segment, Input, Icon } from 'semantic-ui-react';
 
 // use currentAsset data to populate header
 
-
 class UpdatesHeader extends Component {
+
   render() {
-    const { assetName, numUniqueUsers, handleSearchChange, searchLoading, isPrivateAsset } = this.props;
+    const { assetId, assetName, numUniqueUsers, handleSearchChange, searchLoading, isPrivateAsset } = this.props;
 
     return (
+      <Grid.Row>
+        <Grid.Column width={4}>
+          {!isPrivateAsset && <QRCode value={assetId} height="150" width="150" />}
+        </Grid.Column>
+      
       <Segment clearing>
         {/* Asset Title */}
         <Header fluid="true" as="h2" floated="left" style={{ marginBottom: 0 }}>
@@ -37,6 +43,7 @@ class UpdatesHeader extends Component {
             />
         </Header>
       </Segment>
+      </Grid.Row>
     )
   }
 }

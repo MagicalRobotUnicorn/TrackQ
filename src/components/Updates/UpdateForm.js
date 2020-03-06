@@ -4,6 +4,7 @@ import { Segment, Button, Input } from 'semantic-ui-react';
 import firebase from '../../firebase';
 
 import FileModal from './FileModal';
+import LocationModal from './LocationModal';
 import ProgressBar from './ProgressBar';
 
 // Update current gizmo to eventually call API from local express 
@@ -16,10 +17,16 @@ class UpdateForm extends Component {
     update: '',
     asset: this.props.currentAsset,
     user: this.props.currentUser,
+    locations: this.props.locations,
     loading: false,
     errors: [],
-    modal: false
+    modal: false,
+    locationModal: false,
+    locationSelected: false,
+    updateSelected: false
   }
+
+  // Radio button state change: variables for 
 
   openModal = () => {
     this.setState({modal: true});
@@ -27,6 +34,14 @@ class UpdateForm extends Component {
 
   closeModal = () => {
     this.setState({modal: false});
+  }
+
+  openLocationModal = () => {
+    this.setState({locationModal: true});
+  }
+  
+  closeLocationModal = () => {
+    this.setState({locationModal: false});
   }
 
   handleChange = event => {
@@ -150,8 +165,28 @@ class UpdateForm extends Component {
     })
   }
 
+  // New Outline for asset form creation:
+  // Location
+  // DateTime Stamp
+  // Update text
+  // Widget
+  // Media
+
+  // Location held in state (Create action)
+  // Radio Button Selection: Location, Update, Both
+  // Location drop down menu either active class or disabled class
+
+
+
   render() {
-    const {errors, update, loading, modal, uploadState, percentUploaded} = this.state;
+    const {errors, update, loading, modal, uploadState, percentUploaded, locationModal} = this.state;
+
+    // Grid row
+    // Grid col: Select Location, Update, Both (see variations of list: horizontal list)
+    // Grid col: Location pull down
+
+
+
 
     return (
       <Segment className="update__form">
@@ -185,10 +220,22 @@ class UpdateForm extends Component {
               labelPosition="right"
               icon="cloud upload"
               />
+            <Button
+              color="green"
+              onClick={this.openLocationModal}
+              content="Create New Location"
+              labelPosition="right"
+              icon="map"
+              />
             <FileModal
               modal={modal}
               closeModal={this.closeModal}
               uploadFile={this.uploadFile}
+            />
+            <LocationModal
+              modal={locationModal}
+              closeModal={this.closeLocationModal}
+              addLocation={this.addLocation}
             />
             <br />
             <ProgressBar 

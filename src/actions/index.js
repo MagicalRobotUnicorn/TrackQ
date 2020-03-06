@@ -34,3 +34,13 @@ export const setPrivateAsset = isPrivateAsset => {
     }
   }
 }
+
+// Current Location Payload
+export const setCurrentLocation = location => {
+  return {
+    type: actionTypes.SET_CURRENT_LOCATION,
+    payload: {
+      currentLocation: location
+    }
+  }
+}

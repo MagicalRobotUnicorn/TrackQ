@@ -10,7 +10,6 @@ import MetaPanel from './MetaPanel/MetaPanel';
 
 const App = ({ currentUser, currentAsset }) => (
   <Grid columns="equal" className="app" style={{background: '#eee'}}>
-    <ColorPanel />
     <SidePanel
       key={currentUser && currentUser.uid}
       currentUser={currentUser}
@@ -30,7 +29,8 @@ const App = ({ currentUser, currentAsset }) => (
 
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
-  currentAsset: state.asset.currentAsset
+  currentAsset: state.asset.currentAsset,
+  currentLocation: state.currentLocation
 });
 
 export default connect(mapStateToProps)(App);

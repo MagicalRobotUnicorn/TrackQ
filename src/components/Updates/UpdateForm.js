@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
-import { Segment, Button, Input } from 'semantic-ui-react';
+import { Segment, Button, Input, Form, Radio } from 'semantic-ui-react';
 import firebase from '../../firebase';
 
 import FileModal from './FileModal';
@@ -22,12 +22,13 @@ class UpdateForm extends Component {
     errors: [],
     modal: false,
     locationModal: false,
+
+    // Radio button state changes
     locationSelected: false,
-    updateSelected: false
+    updateSelected: false,
   }
 
   // Radio button state change: variables for 
-
   openModal = () => {
     this.setState({modal: true});
   }
@@ -176,10 +177,34 @@ class UpdateForm extends Component {
   // Radio Button Selection: Location, Update, Both
   // Location drop down menu either active class or disabled class
 
+  // Disabled = true for location, update, both
+
+  handleSubmit
+
+  enableUpdate = () => {
+    this.setState({
+      locationSelected: true,
+      updateSelected: false
+    })
+  }
+
+  enableLocation = () => {
+    this.setState({
+      locationSelected: false,
+      updateSelected: true
+    })
+  }
+
+  enableBoth = () => {
+    this.setState({
+      locationSelected: false,
+      updateSelected: false
+    })
+  }
 
 
   render() {
-    const {errors, update, loading, modal, uploadState, percentUploaded, locationModal} = this.state;
+    const {errors, update, loading, modal, uploadState, percentUploaded, locationModal, locationSelected, updateSelected} = this.state;
 
     // Grid row
     // Grid col: Select Location, Update, Both (see variations of list: horizontal list)
@@ -190,10 +215,38 @@ class UpdateForm extends Component {
 
     return (
       <Segment className="update__form">
+        <Form>
+          <fieldset id="group1">
+            <input
+              type="radio"
+              label="Update Location"
+              name='radioGroup'
+              value="location"
+              onChange={this.enableLocation}
+            /> Update Location
+            <br />
+            <input
+              type="radio"
+              label="Update Details"
+              name='radioGroup'
+              value="details"
+              onChange={this.enableUpdate}
+            /> Update Details
+            <br />
+            <input
+              type="radio"
+              label="Update Location and Details"
+              name='radioGroup'
+              value="both"
+              onChange={this.enableBoth}
+            /> Update Location and Details
+          </fieldset>
+        </Form>
         <Input
           fluid
           name="update"
           onChange={this.handleChange}
+          disabled={updateSelected}
           value={update}
           style={{ marginBottom: '0.7em' }}
           label={<Button icon={'add'} />}

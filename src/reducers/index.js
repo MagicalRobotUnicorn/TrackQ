@@ -27,6 +27,11 @@ const initialAssetState = {
   currentAsset: null
 };
 
+// Initial location State
+const initialLocationState = {
+  currentLocation: null
+}
+
 const asset_reducer = (state = initialAssetState, action) => {
   switch (action.type) {
     case actionTypes.SET_CURRENT_ASSET:
@@ -44,9 +49,23 @@ const asset_reducer = (state = initialAssetState, action) => {
   }
 }
 
+// Location Reducer function
+const location_reducer = (state = initialLocationState, action) => {
+  switch(action.type) {
+    case actionTypes.SET_CURRENT_LOCATION:
+      return {
+        ...state,
+        currentLocation: action.payload.currentLocation
+      }
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   user: user_reducer,
-  asset: asset_reducer
+  asset: asset_reducer,
+  location: location_reducer
 });
 
 export default rootReducer;

@@ -16,6 +16,7 @@ export default class Updates extends Component {
     privateUpdatesRef: firebase.database().ref('privateMessages'),
     locationsRef: firebase.database().ref('locations'),
     updates: [],
+    currentLocation: null,
     locations: [],
     locationsModal: false,
     updatesLoading: true,

@@ -54,10 +54,34 @@ class Assets extends Component {
     this.setState({ firstLoad: false});
   }
 
+
+  // Todo: Bomb database and add new data structure
+
   addAsset = () => {
-    const { assetsRef, assetName, assetDetails, user } = this.state;
+    const { assetsRef, assetName, assetDetails, assetLocation, assetDestinationLocation, user } = this.state;
 
     const key = assetsRef.push().key;
+
+    // Items to include on new asset
+    // 1. Checked in (ASSET NAME)
+    // 2. At (TIMESTAMP)
+    // 3. Destination (LOCATION ID....)
+    // 4. Notes:
+    // 5. Attention Level
+    // 6. Widget link (META PANEL)
+
+    const updatedAsset = {
+      id: key,
+      name: assetName,
+      location: assetLocation,
+      destination: assetDestinationLocation,
+      details: assetDetails,
+      createdBy: {
+        name: user.displayName,
+        avatar: user.photoURL
+      }
+    }
+    
 
     const newAsset = {
       id: key,
@@ -68,6 +92,8 @@ class Assets extends Component {
         avatar: user.photoURL
       }
     }
+
+    // TODO: Set Asset to new data structure
     
     assetsRef
     .child(key)
@@ -161,6 +187,9 @@ class Assets extends Component {
         <Modal basic open={modal} onClose={this.closeModal}>
           <Modal.Content>
             <Form onSubmit={this.handleSubmit}>
+
+              {/* TODO: Update Asset form to reflect new data structure */}
+              
               <Input
                 fluid
                 label="Name of Asset"

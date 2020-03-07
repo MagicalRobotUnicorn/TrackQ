@@ -21,6 +21,8 @@ class UpdateForm extends Component {
     loading: false,
     errors: [],
     modal: false,
+
+    location: null,
     locationModal: false,
 
     // Radio button state changes

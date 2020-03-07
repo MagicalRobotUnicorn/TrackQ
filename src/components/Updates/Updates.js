@@ -86,7 +86,9 @@ export default class Updates extends Component {
         locations: loadedLocations,
         locationsLoading: false
       });
-      this.countUniqueUsers(loadedLocations);
+
+      // Count Unique Locations Function
+      // this.countUniqueUsers(loadedLocations);
     });
   };
 
@@ -110,6 +112,11 @@ export default class Updates extends Component {
   getUpdatesRef = () => {
     const { updatesRef, privateUpdatesRef, privateAsset } = this.state;
     return privateAsset ? privateUpdatesRef : updatesRef;
+  }
+
+  getLocationsRef = () => {
+    const { locationsRef } = this.state;
+    return locationsRef;
   }
 
   handleSearchChange = event => {

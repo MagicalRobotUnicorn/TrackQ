@@ -45,6 +45,11 @@ class UpdateForm extends Component {
     this.setState({locationModal: false});
   }
 
+  // Add location function passed by props
+  
+
+  // Stage Location -> Create Update -> Post Update -> Read Update
+
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value });
   }
@@ -154,7 +159,7 @@ class UpdateForm extends Component {
   sendFileMessage = (fileUrl, ref, pathToUpload) => {
     ref.child(pathToUpload)
     .push()
-    .set(this.createUpdate(fileUrl))
+    .set(this.createUpdate(fileUrl))    // Use createUpdate differently... overload with fireURL
     .then(() => {
       this.setState({ uploadState: 'done'})
     })
@@ -179,7 +184,6 @@ class UpdateForm extends Component {
 
   // Disabled = true for location, update, both
 
-  handleSubmit
 
   enableUpdate = () => {
     this.setState({
@@ -209,9 +213,6 @@ class UpdateForm extends Component {
     // Grid row
     // Grid col: Select Location, Update, Both (see variations of list: horizontal list)
     // Grid col: Location pull down
-
-
-
 
     return (
       <Segment className="update__form">
@@ -261,7 +262,7 @@ class UpdateForm extends Component {
               onClick={this.postUpdate}
               disabled={loading}
               color="orange"
-              content="Add Reply"
+              content="Post Updated Information"
               labelPosition="left"
               icon="edit"
               />

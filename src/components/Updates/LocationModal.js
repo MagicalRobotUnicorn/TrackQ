@@ -6,9 +6,16 @@ export default class LocationModal extends Component {
     location: null
   }
 
+  addLocation = event => {
+    const location = event.target.locations[0];
+    if (location) {
+      this.setState({location});
+    }
+  }
+
   submitLocation = event => {
     const { location } = this.state;
-    const {addLocation, closeModal } = this.props;
+    const { addLocation, closeModal } = this.props;
 
     if (location != null) {
       addLocation(location);
@@ -28,9 +35,10 @@ export default class LocationModal extends Component {
         </Modal.Content>
         <Modal.Actions>
           <Button
-            onClick={this.addLocation}
             color="green"
             inverted
+            onChange={this.addLocation}
+            onClick={this.submitLocation} 
           >
             <Icon name="checkmark" /> Add Location
           </Button>

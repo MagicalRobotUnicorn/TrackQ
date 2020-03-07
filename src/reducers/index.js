@@ -1,11 +1,34 @@
+// Combine reducers is createStore() with multiple reducers
 import { combineReducers } from 'redux';
 import * as actionTypes from '../actions/types';
 
+
+// STORE --> Globalized state
+// This is actual value that is coming from our reducer
 const initialUserState = {
   currentUser: null,
-  isLoading: true
+  isLoading: true,
 };
 
+const initialAssetState = {
+  currentAsset: null
+};
+
+// Initial location State
+const initialLocationState = {
+  currentLocation: null
+}
+
+
+// In Code: Action increment
+
+// After Reducer --> Dispatch
+
+// **************** To display state to console:
+// store.subscribe(() => console.log(store.getState()));
+
+
+// REDUCER -> How action affects state
 const user_reducer = (state = initialUserState, action) => {
   switch(action.type) {
     case actionTypes.SET_USER:
@@ -21,15 +44,6 @@ const user_reducer = (state = initialUserState, action) => {
     default:
       return state;
   }
-}
-
-const initialAssetState = {
-  currentAsset: null
-};
-
-// Initial location State
-const initialLocationState = {
-  currentLocation: null
 }
 
 const asset_reducer = (state = initialAssetState, action) => {

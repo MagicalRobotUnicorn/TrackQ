@@ -3,7 +3,6 @@ import firebase from '../../firebase';
 import { Menu, Icon, Modal, Form, Input, Button } from 'semantic-ui-react';
 import { setCurrentAsset, setPrivateAsset } from '../../actions';
 import { connect } from 'react-redux';
-import '../../scripts/qrcode';
 
 
 // Import QR Code library

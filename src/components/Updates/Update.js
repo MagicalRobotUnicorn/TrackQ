@@ -2,22 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { Comment, Image, Grid } from 'semantic-ui-react';
 
-// import qrcode
-import QRCode from '../../scripts/qrcode';
-
 // display code function
-const displayCode = (idInformation) => {
-  let thisCode = new QRCode("thisCode", {
-    text: idInformation,
-    width: 150,
-    height: 150,
-    colorDark: "#000000",
-    colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.H
-  });
-
-  return thisCode;
-}
 
 const isOwnUpdate= (update, user) => {
   return update.user.id === user.uid ? 'update__self' : '';

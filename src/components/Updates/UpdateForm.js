@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
-import { Segment, Button, Input, Form, Radio } from 'semantic-ui-react';
+import { Segment, Button, Input, Form, Radio, Select, Dropdown } from 'semantic-ui-react';
 import firebase from '../../firebase';
 
 import FileModal from './FileModal';
@@ -48,6 +48,22 @@ class UpdateForm extends Component {
   }
 
   // Add location function passed by props
+//   import React from 'react'
+// import { Dropdown } from 'semantic-ui-react'
+
+// const options = [
+//   { key: 1, text: 'Choice 1', value: 1 },
+//   { key: 2, text: 'Choice 2', value: 2 },
+//   { key: 3, text: 'Choice 3', value: 3 },
+// ]
+
+// const DropdownExampleClearable = () => (
+//   <Dropdown clearable options={options} selection />
+// )
+
+  locationDropdown = () => (
+    <Dropdown clearable options={this.state.locations} selection />
+  )
   
 
   // Stage Location -> Create Update -> Post Update -> Read Update
@@ -208,9 +224,14 @@ class UpdateForm extends Component {
     })
   }
 
+  // Sample function for pull down menu
+  // let intialLocations = [];
+  
+
+
 
   render() {
-    const {errors, update, loading, modal, uploadState, percentUploaded, locationModal, locationSelected, updateSelected} = this.state;
+    const {errors, update, loading, modal, uploadState, percentUploaded, locationModal, locations, updateSelected} = this.state;
 
     // Grid row
     // Grid col: Select Location, Update, Both (see variations of list: horizontal list)
@@ -245,6 +266,7 @@ class UpdateForm extends Component {
             /> Update Location and Details
           </fieldset>
         </Form>
+        <Dropdown clearable options={locations} selection />
         <Input
           fluid
           name="update"

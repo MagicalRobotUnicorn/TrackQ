@@ -17,12 +17,39 @@ export default class Updates extends Component {
     locationsRef: firebase.database().ref('locations'),
     updates: [],
     currentLocation: null,
-    locations: [],
+    locations: [
+      {
+        key: 1,
+        text: 'Human Resources',
+        value: 'Human Resources'
+      },
+      {
+        key: 2,
+        text: 'Shipping and Receiving',
+        value: 'Shipping and Receiving'
+      },
+      {
+        key: 3,
+        text: 'Front Desk',
+        value: 'Front Desk'
+      },
+      {
+        key: 4,
+        text: 'Main Floor',
+        value: 'Main Floor'
+      },
+      {
+        key: 5,
+        text: 'Executive Office',
+        value: 'Executive Office'
+      }
+    ],
     locationsModal: false,
     updatesLoading: true,
     locationsLoading: true,
     asset: this.props.currentAsset,
     user: this.props.currentUser,
+    location: this.props.currentLocation,
     progressBar: false,
     numUniqueUsers: '',
     searchTerm: '',
@@ -53,14 +80,48 @@ export default class Updates extends Component {
 
   componentDidMount(){ 
     const { asset, user } = this.state;
+    // this.addLocations();
 
     if (asset && user){
       this.addListeners(asset.id);
     }
   }
 
-  addListeners = assetId => {
+  addListeners = (assetId, locationId) => {
     this.addUpdateListener(assetId);
+    // this.addLocationListener(locationId);
+  }
+
+  addLocations = () => {
+    this.setState({
+      locations: [
+        {
+          key: 1,
+          text: 'Human Resources',
+          value: 'Human Resources'
+        },
+        {
+          key: 2,
+          text: 'Shipping and Receiving',
+          value: 'Shipping and Receiving'
+        },
+        {
+          key: 3,
+          text: 'Front Desk',
+          value: 'Front Desk'
+        },
+        {
+          key: 4,
+          text: 'Main Floor',
+          value: 'Main Floor'
+        },
+        {
+          key: 5,
+          text: 'Executive Office',
+          value: 'Executive Office'
+        }
+      ]
+    });
   }
 
   addUpdateListener = assetId => {
@@ -91,6 +152,7 @@ export default class Updates extends Component {
       // this.countUniqueUsers(loadedLocations);
     });
   };
+
 
   // displayCode = (idInformation) => {
   //   let thisCode = new QRCode("thisCode", {

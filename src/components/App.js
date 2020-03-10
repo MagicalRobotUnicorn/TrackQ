@@ -7,7 +7,7 @@ import SidePanel from './SidePanel/SidePanel';
 import Updates from './Updates/Updates';
 import MetaPanel from './MetaPanel/MetaPanel';
 
-const App = ({ currentUser, currentAsset }) => (
+const App = ({ currentUser, currentAsset, currentLocation }) => (
   <Grid columns="equal" className="app" style={{background: '#eee'}}>
     <SidePanel
       key={currentUser && currentUser.uid}
@@ -18,6 +18,7 @@ const App = ({ currentUser, currentAsset }) => (
         key={currentAsset && currentAsset.id}
         currentAsset={currentAsset}
         currentUser={currentUser}
+        currentLocation={currentLocation}
       />
     </Grid.Column>
     <Grid.Column width={4}>

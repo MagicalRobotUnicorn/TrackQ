@@ -73,18 +73,7 @@ class Assets extends Component {
       id: key,
       name: assetName,
       location: assetLocation,
-      destination: assetDestinationLocation,
-      details: assetDetails,
-      createdBy: {
-        name: user.displayName,
-        avatar: user.photoURL
-      }
-    }
-    
-
-    const newAsset = {
-      id: key,
-      name: assetName,
+      destination: assetDestination,
       details: assetDetails,
       createdBy: {
         name: user.displayName,
@@ -188,6 +177,17 @@ class Assets extends Component {
             <Form onSubmit={this.handleSubmit}>
 
               {/* TODO: Update Asset form to reflect new data structure */}
+                {/* const updatedAsset = {
+                  id: key,
+                  name: assetName,
+                  location: assetLocation,
+                  destination: assetDestinationLocation,
+                  details: assetDetails,
+                  createdBy: {
+                    name: user.displayName,
+                    avatar: user.photoURL
+                  }
+              } */}
               
               <Input
                 fluid
@@ -199,6 +199,18 @@ class Assets extends Component {
                 fluid
                 label="About the Asset"
                 name="assetDetails"
+                onChange={this.handleChange}
+              ></Input>
+              <Input
+                fluid
+                label="Current Location"
+                name="assetLocation"
+                onChange={this.handleChange}
+              ></Input>
+              <Input
+                fluid
+                label="Destination"
+                name="assetDestination"
                 onChange={this.handleChange}
               ></Input>
             </Form>

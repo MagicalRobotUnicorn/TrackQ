@@ -5,7 +5,7 @@ import firebase from '../../firebase';
 
 export default class LocationPanel extends Component {
   // State for location
-
+ 
   // Grouping in Database for location
 
   // Pull down menu to select locations that are in the database
@@ -25,7 +25,8 @@ export default class LocationPanel extends Component {
     this.setState({ location: this.props.locations.currentLocation });
   }
 
-  // for loop that loops over locations in the database for location select 
+
+  // see bookmark for map state to props redux example 
   dropdownOptions = () => [
     {
       text: <span>Signed in as <strong>{this.state.currentLocation}</strong></span>,
@@ -37,13 +38,7 @@ export default class LocationPanel extends Component {
     {
       text: <span>View Assets</span>
     },
-    {
-      text: <span>View Stations</span>
-    },
-    {
-      text: <span>Create Stations</span>
-    },
-    {
+    { 
       text: <span>Account Settings</span>
     },
     {
@@ -53,6 +48,8 @@ export default class LocationPanel extends Component {
       text: <span onClick={this.handleSignout}>Sign Out</span>
     }
   ];
+
+  
   render() {
     const { location } = this.state;
 
